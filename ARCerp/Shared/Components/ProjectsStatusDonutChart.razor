@@ -1,0 +1,46 @@
+﻿<ApexChart TItem="ProjectStatusData"
+            Title="Projects By Status">
+
+     <ApexPointSeries TItem="ProjectStatusData"
+                      Items="Data"
+                      SeriesType="SeriesType.Donut"
+                      Name="Project Status"
+                      XValue="@(e => e.Name)"
+                      YAggregate="@(e => e.Sum(e => e.Status))"
+                      PointColor="e=> GetPointColor(e)" />
+ </ApexChart>
+
+ @code {
+    private List<ProjectStatusData> Data { get; set; } = new();
+    private ApexChartOptions<ProjectStatusData> options { get; set; } = new();
+    protected override void OnInitialized()
+    {
+        Data.Add(new ProjectStatusData { Name = "Active", Status = 13});
+        Data.Add(new ProjectStatusData { Name = "In Planning", Status = 40 });
+        Data.Add(new ProjectStatusData { Name = "Suspended", Status = 10 });
+
+        options.Legend = null;
+
+    }
+
+    public class ProjectStatusData
+    {
+        public string Name { get; set; }
+        public int Status { get; set; }
+    }
+
+    private string GetPointColor(ProjectStatusData data)
+    {
+        switch (data.Name)
+        {
+            case "Active":
+                return "#367cd2";
+            case "In Planning":
+                return "#736eb9";
+            case "Suspended":
+                return "#01bdae";
+            default:
+                return "#80bb00";
+        }
+    }
+}

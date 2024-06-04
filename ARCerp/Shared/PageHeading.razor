@@ -1,0 +1,12 @@
+﻿@code {
+    [CascadingParameter(Name = "SetHeading")]
+    public Action<string> SetHeading { get; set; }
+
+    [Parameter]
+    public string Heading { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        SetHeading?.Invoke(Heading);
+    }
+}

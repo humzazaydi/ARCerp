@@ -1,0 +1,130 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>ARCerp</PageTitle>
+
+<CascadingValue Value="(Action<string>)SetPageHeading" Name="SetHeading">
+    <div class="wrapper">
+        <!-- Navbar -->
+     
+        <nav class="main-header navbar navbar-expand-md navbar-light navbar-white" style="background: #0d6efd !important;">
+            <div class="container">
+             @*    <a href="/" class="navbar-brand">
+
+                    <span class="brand-text font-weight-bolder" style="color: #fff;">ARCerp</span>
+                </a> *@
+                <ul class="navbar-nav">
+
+                    <li class="nav-item d-sm-inline-block">
+                        <h4 class="m-0 text-light">@PageHeading</h4>
+                    </li>
+                </ul>
+                <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                    <form class="form-inline ml-0 ml-md-10" style="margin-left: 15rem !important;">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-navbar" type="submit">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form><!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                    </ul>
+
+                    <!-- SEARCH FORM -->
+
+                </div>
+
+                <!-- Right navbar links -->
+                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+
+
+
+
+                    <li class="nav-item dropdown">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                                <i class="fas fa-bars" style="font-size: 2rem;"></i>
+                            </a>
+                            <div class="dropdown-menu" style="">
+                                <a class="dropdown-item" tabindex="-1" href="accounts">Accounting</a>
+                                <a class="dropdown-item" tabindex="-1" href="/">Sales</a>
+                                <a class="dropdown-item" tabindex="-1" href="accounts">Purchasing</a>
+                                <a class="dropdown-item" tabindex="-1" href="pickuporders">Inventory</a>
+                                <a class="dropdown-item" tabindex="-1" href="productionmanager">Production</a>
+                                <a class="dropdown-item" tabindex="-1" href="#">Setup</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- /.navbar -->
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid" style="padding-top:25px">
+                    @Body
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+
+    </div>
+@* <div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+            <div class="top-row header px-4">
+            @PageHeading
+
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div> *@
+</CascadingValue>
+
+@code {
+    private string pageHeading;
+
+    [CascadingParameter]
+    public string PageHeading
+    {
+        get => pageHeading;
+        set
+        {
+            if (pageHeading != value)
+            {
+                pageHeading = value;
+                StateHasChanged();
+            }
+        }
+    }
+
+    public void SetPageHeading(string heading)
+    {
+        PageHeading = heading;
+    }
+}

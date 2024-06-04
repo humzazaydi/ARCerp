@@ -1,0 +1,73 @@
+﻿<style>
+    .apexcharts-legend{
+        display:none !important;
+    }
+
+    .card-body div{
+        height:auto !important
+    }
+</style>
+<div class="card">
+    <div class="card-header" style="border-top: 5px solid red;">
+        <h3 class="card-title">Total Spend</h3>
+
+    </div>
+    <div class="card-body">
+        <h2 class="card-title" style="font-size: 2rem;">
+            $ 128M
+        </h2>
+        <div>
+
+        
+        <ApexChart TItem="MyData" Title="">
+            <ApexPointSeries TItem="MyData"
+                         Items="Data"
+                         Name="Net Profit"
+                         SeriesType="SeriesType.Pie"
+                         XValue="e => e.Category"
+                         YAggregate="e => e.Sum(e => e.NetProfit)"
+                         PointColor="e=> GetPointColor(e)" ShowDataLabels
+                         />
+        </ApexChart>
+         </div>
+    </div>
+</div>
+ @code {
+    private List<MyData> Data { get; set; } = new();
+    private ApexChartOptions<MyData> options { get; set; } = new();
+    protected override void OnInitialized()
+    {
+        Data.Add(new MyData { Category = "Jan", NetProfit = 13, Revenue = 13 });
+        Data.Add(new MyData { Category = "Feb", NetProfit = 40, Revenue = 40 });
+        Data.Add(new MyData { Category = "Mar", NetProfit = 10, Revenue = 10 });
+        Data.Add(new MyData { Category = "Apr", NetProfit = 30, Revenue = 30 });
+        Data.Add(new MyData { Category = "May", NetProfit = 7, Revenue = 7 });
+
+        options.Legend = null;
+
+    }
+
+    public class MyData
+    {
+        public string Category { get; set; }
+        public int NetProfit { get; set; }
+        public int Revenue { get; set; }
+    }
+
+    private string GetPointColor(MyData data)
+    {
+        switch (data.Category)
+        {
+            case "Jan":
+                return "#717b7c";
+            case "Feb":
+                return "#01a9d9";
+            case "Mar":
+                return "#ffa401";
+            case "Apr":
+                return "#3a8cde";
+            default:
+                return "#80bb00";
+        }
+    }
+}

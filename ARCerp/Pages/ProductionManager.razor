@@ -1,0 +1,113 @@
+﻿@page "/productionmanager"
+@using ARCerp.Shared.Components
+@layout MainLayout
+
+<PageTitle>Production Manager</PageTitle>
+
+<PageHeading Heading="Production Manager" />
+
+<div class="row">
+    <div class="col-6 col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Production Orders</h3>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>16</h3>
+
+                                <p>Orders To Release Today<br /></p><br />
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-clock"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>0</h3>
+
+                                <p>Orders To Release This Week<br /></p><br />
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-clock"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>17</h3>
+
+                                <p>Late Production Orders<br /></p><br />
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-wrench"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                            <div class="inner">
+                                <h3>0</h3>
+
+                                <p>Production Orders With Past-Due Operations</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-wrench"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+             </div>
+         </div>
+    </div>
+    <div class="col-6 col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Projects</h3>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-6 col-6">
+                        <ProjectsStatusDonutChart></ProjectsStatusDonutChart>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>0</h3>
+
+                                <p>Urgent Project Issues<br /></p><br />
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-clock"></i>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+ 

@@ -1,0 +1,138 @@
+﻿@page "/pickuporders"
+
+<PageTitle>Pickup Orders</PageTitle>
+
+@using ARCerp.Data.Order
+@inject OrderService orderService
+
+<PageHeading Heading="Select orders to pick" />
+
+
+<style>
+    .nav-tabs.flex-column .nav-item.show .nav-link, .nav-tabs.flex-column .nav-link.active {
+        border-color: #dee2e6 transparent #dee2e6 #dee2e6;
+        border-left: 5px solid #0d6efd;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-5 col-sm-3">
+        <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">All Pick Lists</a>
+            <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">General Pick Lists</a>
+            <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages" aria-selected="false">Orders To Pick</a>
+            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Orders To Pack</a>
+            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Orders To Ship</a>
+            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Sub-Contracting</a>
+        </div>
+    </div>
+    <div class="col-7 col-sm-9">
+        <div class="tab-content" id="vert-tabs-tabContent">
+            <div class="tab-pane text-left fade active show" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
+                <button type="button" class="btn btn-block btn-primary" style="width: 170px;float: left;margin-right: 5px;">Create Shipment</button>
+                <button type="button" class="btn btn-block btn-outline-secondary" style="width: 170px;float: left;margin-right: 5px;margin-top: 0;">Print pick list</button>
+                <button type="button" class="btn btn-block btn-outline-secondary" style="width: 170px;float: left;margin-right: 5px;margin-top: 0;">Close</button>
+                <table class="table table-bordered" style="margin-top:15px;">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Line</th>
+                            <th>Quantity</th>
+                            <th>Item No.</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in orders)
+                        {
+                            <tr>
+                                <td>@order.OrderId</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.OrderNumber</td>
+                                <td>@order.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Line</th>
+                            <th>Quantity</th>
+                            <th>Item No.</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in orders)
+                        {
+                            <tr>
+                                <td>@order.OrderId</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.OrderNumber</td>
+                                <td>@order.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="vert-tabs-messages" role="tabpanel" aria-labelledby="vert-tabs-messages-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Line</th>
+                            <th>Quantity</th>
+                            <th>Item No.</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in orders)
+                        {
+                            <tr>
+                                <td>@order.OrderId</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.OrderNumber</td>
+                                <td>@order.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="vert-tabs-settings" role="tabpanel" aria-labelledby="vert-tabs-settings-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Line</th>
+                            <th>Quantity</th>
+                            <th>Item No.</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in orders)
+                        {
+                            <tr>
+                                <td>@order.OrderId</td>
+                                <td>@order.Quantity</td>
+                                <td>@order.OrderNumber</td>
+                                <td>@order.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Order>? orders = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        orders = await orderService.GetOrdersAsync();
+    }
+}

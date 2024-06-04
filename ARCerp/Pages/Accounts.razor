@@ -1,0 +1,161 @@
+﻿@page "/accounts"
+
+<PageTitle>Accounts</PageTitle>
+
+@using ARCerp.Data.Account
+@inject AccountService accountService
+
+<PageHeading Heading="Chart Of Accounts" />
+
+<div class="row">
+    <div class="col-12 col-sm-12">
+        <button type="button" class="btn btn-block btn-primary" style="width: 170px;float: left;margin-right: 5px;" data-toggle="modal" data-target="#add-gl-modal">Create New</button>
+        <button type="button" class="btn btn-block btn-outline-secondary" style="width: 170px;float: left;margin-right: 5px;margin-top: 0;margin-bottom: 15px;">Close</button>
+        <table class="table table-bordered" style="margin-top:15px;">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>Type</th>
+                    <th>Control Type</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Sub Category</th>
+                    <th>Group Key</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ac in accounts)
+                {
+                    <tr>
+                        <td>@ac.AccountNumber</td>
+                        <td>@ac.AccountType</td>
+                        <td>@ac.ControlType</td>
+                        <td>@ac.Description</td>
+                        <td>@ac.Category</td>
+                        <td>@ac.SubCategory</td>
+                        <td>-</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="modal fade" id="add-gl-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#0d6efd !important">
+                <h4 class="modal-title" style="color:#fff">Add GL</h4>
+                <button type="button" style="color:#fff" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">GL Amount</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Description</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Account Type</label>
+                        <div class="col-sm-7">
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Category</label>
+                        <div class="col-sm-7">
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">SubCategory</label>
+                        <div class="col-sm-7">
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Group Key</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Control Type</label>
+                        <div class="col-sm-7">
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Require Cost Center</label>
+                        <div class="col-sm-7">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck2">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-5 col-form-label">Status</label>
+                        <div class="col-sm-7">
+                            <select class="form-control">
+                                <option>option 1</option>
+                                <option>option 2</option>
+                                <option>option 3</option>
+                                <option>option 4</option>
+                                <option>option 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start">
+                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+           
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@code {
+
+    private List<Account>? accounts = null;
+    protected override async Task OnInitializedAsync()
+    {
+        accounts = await accountService.GetAccountsAsync();
+    }
+}
