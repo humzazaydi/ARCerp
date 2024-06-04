@@ -1,0 +1,96 @@
+﻿@page
+@model ARCerp.Pages.UserAccount.LoginModel
+@{
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ARCerp | Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <style>
+        .login-box, .register-box {
+            width: auto;
+            min-width: 840px;
+        }
+    </style>
+</head>
+<body class="hold-transition login-page" style="background:#0d6efd !important">
+    <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline" style="padding: 30px 64px 30px 60px;">
+        
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6" style="display: table;">
+                        <div style="display: table-cell;vertical-align: middle;">
+                            <img src="https://www.arcweb.com/themes/custom/archadvisory/images/arcweb.svg" />
+                        </div>
+                    </div>
+                    <div class="col-6" style="padding: 1rem;border: 1px solid #00000021;border-radius: 10px;">
+                        <form action="#" method="post">
+                            <div class="input-group mb-3 row">
+                                <label class="col-12">ARCerp ID</label>
+                                <input type="email" class="form-control col-12" placeholder="Email">
+
+                            </div>
+                            <div class="input-group mb-3 row mt-3">
+                                <label class="col-12">Password</label>
+                                <input type="password" class="form-control col-12" placeholder="Password">
+
+                            </div>
+                            <div class="input-group row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <label class="col-4">
+                                            Language:
+                                        </label>
+                                        <select class="form-control col-8">
+                                            <option>English</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <div class="input-group row">
+                                <div class="col-12">
+                                    <div class="icheck-primary">
+                                        <input type="checkbox" id="remember">
+                                        <label for="remember">
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                                </div>
+                                <!-- /.col -->
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+                
+
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/dist/js/adminlte.min.js"></script>
+</body>
+</html>
