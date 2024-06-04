@@ -3,7 +3,7 @@
 <PageTitle>Pickup Orders</PageTitle>
 
 @using ARCerp.Data.Order
-@inject OrderService orderService
+@inject MockupDatasets mockupDatasets
 
 <PageHeading Heading="Select orders to pick" />
 
@@ -23,8 +23,8 @@
             <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">General Pick Lists</a>
             <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages" aria-selected="false">Orders To Pick</a>
             <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Orders To Pack</a>
-            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Orders To Ship</a>
-            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Sub-Contracting</a>
+            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-webservers" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Orders To Ship</a>
+            <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-finance" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">Sub-Contracting</a>
         </div>
     </div>
     <div class="col-7 col-sm-9">
@@ -36,20 +36,20 @@
                 <table class="table table-bordered" style="margin-top:15px;">
                     <thead>
                         <tr>
-                            <th style="width: 10px">Line</th>
-                            <th>Quantity</th>
-                            <th>Item No.</th>
-                            <th>Description</th>
+                            <th style="width: 10px">Street</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>ZipCode</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in orders)
+                        @foreach (var item in addresses)
                         {
                             <tr>
-                                <td>@order.OrderId</td>
-                                <td>@order.Quantity</td>
-                                <td>@order.OrderNumber</td>
-                                <td>@order.Description</td>
+                                <td>@item.Street</td>
+                                <td>@item.City</td>
+                                <td>@item.State</td>
+                                <td>@item.ZipCode</td>
                             </tr>
                         }
                     </tbody>
@@ -59,20 +59,20 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 10px">Line</th>
-                            <th>Quantity</th>
-                            <th>Item No.</th>
-                            <th>Description</th>
+                            <th style="width: 10px">Name</th>
+                            <th>Price</th>
+                            <th>Color</th>
+                            <th>Category</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in orders)
+                        @foreach (var item in products)
                         {
                             <tr>
-                                <td>@order.OrderId</td>
-                                <td>@order.Quantity</td>
-                                <td>@order.OrderNumber</td>
-                                <td>@order.Description</td>
+                                <td>@item.Name</td>
+                                <td>@item.Price</td>
+                                <td>@item.Color</td>
+                                <td>@item.Category</td>
                             </tr>
                         }
                     </tbody>
@@ -82,20 +82,20 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 10px">Line</th>
-                            <th>Quantity</th>
-                            <th>Item No.</th>
-                            <th>Description</th>
+                            <th style="width: 10px">Name</th>
+                            <th>CatchPhrase</th>
+                            <th>BsPhrase</th>
+                            <th>Suffix</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in orders)
+                        @foreach (var item in companies)
                         {
                             <tr>
-                                <td>@order.OrderId</td>
-                                <td>@order.Quantity</td>
-                                <td>@order.OrderNumber</td>
-                                <td>@order.Description</td>
+                                <td>@item.Name</td>
+                                <td>@item.CatchPhrase</td>
+                                <td>@item.BsPhrase</td>
+                                <td>@item.Suffix</td>
                             </tr>
                         }
                     </tbody>
@@ -105,20 +105,78 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th style="width: 10px">Line</th>
-                            <th>Quantity</th>
-                            <th>Item No.</th>
-                            <th>Description</th>
+                            <th style="width: 10px">Past</th>
+                            <th>Future</th>
+                            <th>Recent</th>
+                            <th>Soon</th>
+                            <th>RandomMonth</th>
+                            <th>RandomWeekday</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var order in orders)
+                        @foreach (var item in dates)
                         {
                             <tr>
-                                <td>@order.OrderId</td>
-                                <td>@order.Quantity</td>
-                                <td>@order.OrderNumber</td>
-                                <td>@order.Description</td>
+                                <td>@item.Past</td>
+                                <td>@item.Future</td>
+                                <td>@item.Recent</td>
+                                <td>@item.Soon</td>
+                                <td>@item.RandomMonth</td>
+                                <td>@item.RandomWeekday</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="vert-tabs-webservers" role="tabpanel" aria-labelledby="vert-tabs-webservers-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Domain</th>
+                            <th>IpAddress</th>
+                            <th>Ipv6Address</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in webServers)
+                        {
+                            <tr>
+                                <td>@item.Domain</td>
+                                <td>@item.IpAddress</td>
+                                <td>@item.Ipv6Address</td>
+                                <td>@item.AdminLogin.Email</td>
+                                <td>@item.AdminLogin.Username</td>
+                                <td>@item.AdminLogin.Password</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="vert-tabs-finance" role="tabpanel" aria-labelledby="vert-tabs-finance-tab">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width: 10px">Account Number</th>
+                            <th>Routing Number</th>
+                            <th>Iban</th>
+                            <th>Total Amount</th>
+                            <th>CreditCard Number</th>
+                            <th>Bitcoin Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in paymentAccounts)
+                        {
+                            <tr>
+                                <td>@item.AccountNumber</td>
+                                <td>@item.RoutingNumber</td>
+                                <td>@item.Iban</td>
+                                <td>@item.TotalAmount</td>
+                                <td>@item.CreditCardNumber</td>
+                                <td>@item.BitcoinAddress</td>
                             </tr>
                         }
                     </tbody>
@@ -129,10 +187,20 @@
 </div>
 
 @code {
-    private List<Order>? orders = null;
+    private List<Address> addresses;
+    private List<Product> products;
+    private List<Company> companies;
+    private List<Dates> dates;
+    private List<PaymentAccount> paymentAccounts;
+    private List<WebServer> webServers;
 
     protected override async Task OnInitializedAsync()
     {
-        orders = await orderService.GetOrdersAsync();
+        addresses = await mockupDatasets.TestAddress();
+        products = await mockupDatasets.TestCommerce();
+        companies = await mockupDatasets.TestCompany();
+        dates = await mockupDatasets.TestDates();
+        paymentAccounts = await mockupDatasets.TestFinance();
+        webServers = await mockupDatasets.TestInternet();
     }
 }

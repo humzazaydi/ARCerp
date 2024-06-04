@@ -25,7 +25,7 @@ options.SignIn.RequireConfirmedEmail = false;
 
 }).AddEntityFrameworkStores<ARCerpContext>();
 
-builder.Services.AddSingleton<OrderService>();
+builder.Services.AddSingleton<MockupDatasets>();
 builder.Services.AddSingleton<AccountService>();
 
 var app = builder.Build();
