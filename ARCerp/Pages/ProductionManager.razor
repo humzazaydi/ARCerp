@@ -1,9 +1,7 @@
 ﻿@page "/productionmanager"
 @using ARCerp.Shared.Components
-@layout MainLayout
 
 <PageTitle>Production Manager</PageTitle>
-
 <PageHeading Heading="Production Manager" />
 
 <div class="row">
@@ -21,7 +19,7 @@
                             <div class="inner">
                                 <h3>16</h3>
 
-                                <p>Orders To Release Today<br /></p><br />
+                                <p>Orders To Release Today</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-clock"></i>
@@ -35,7 +33,7 @@
                             <div class="inner">
                                 <h3>0</h3>
 
-                                <p>Orders To Release This Week<br /></p><br />
+                                <p>Orders To Release This Week</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-clock"></i>
@@ -43,14 +41,15 @@
 
                         </div>
                     </div>
-
+                </div>
+                <div class="row">
                     <div class="col-lg-6 col-6">
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
                                 <h3>17</h3>
 
-                                <p>Late Production Orders<br /></p><br />
+                                <p>Late Production Orders</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-wrench"></i>
@@ -62,13 +61,14 @@
                         <!-- small box -->
                         <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>15</h3>
+                                <h3>0</h3>
 
-                                <p>Production Orders With Past-Due Operations</p>
+                                <p>Production With Past-Due Operations</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-wrench"></i>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                             <div class="inner">
                                 <h3>0</h3>
 
-                                <p>Urgent Project Issues<br /></p><br />
+                                <p>Urgent Project Issues</p>
                             </div>
                             <div class="icon">
                                 <i class="ion ion-clock"></i>
@@ -105,95 +105,96 @@
             </div>
         </div>
     </div>
-
+</div>
+<div class="row">
     <div class="col-6 col-sm-6">
         <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Production Orders By Status</h3>
+
+            </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>16</h3>
+                        <ApexChart TItem="ProjectStatusData"
+                                   Title="">
 
-                                <p>Orders To Release Today<br /></p><br />
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-clock"></i>
-                            </div>
+                            <ApexPointSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             Name=""
+                                             XValue="@(e => e.Name)"
+                                             YAggregate="@(e => e.Sum(e => e.Status))"
+                                             OrderByDescending="e=>e.Y"
+                                             SeriesType="SeriesType.Bar" />
 
-                        </div>
+                            <ApexPointSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             Name="Net Value"
+                                             XValue="@(e => e.Name)"
+                                             YAggregate="@(e => e.Sum(e => e.Status))"
+                                             OrderByDescending="e=>e.Y"
+                                             SeriesType="SeriesType.Bar" />
+                        </ApexChart>
                     </div>
                     <div class="col-lg-6 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>0</h3>
+                        <ApexChart TItem="ProjectStatusData"
+                                   Title="">
 
-                                <p>Orders To Release This Week<br /></p><br />
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-clock"></i>
-                            </div>
+                            <ApexPointSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             Name=""
+                                             XValue="@(e => e.Name)"
+                                             YAggregate="@(e => e.Sum(e => e.Status))"
+                                             OrderByDescending="e=>e.Y"
+                                             SeriesType="SeriesType.Bar" />
 
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>17</h3>
-
-                                <p>Late Production Orders<br /></p><br />
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-wrench"></i>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>15</h3>
-
-                                <p>Production Orders With Past-Due Operations</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-wrench"></i>
-                            </div>
-                        </div>
+                            <ApexPointSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             Name="Net Value"
+                                             XValue="@(e => e.Name)"
+                                             YAggregate="@(e => e.Sum(e => e.Status))"
+                                             OrderByDescending="e=>e.Y"
+                                             SeriesType="SeriesType.Bar" />
+                        </ApexChart>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
     <div class="col-6 col-sm-6">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Production Variences</h3>
+                <h3 class="card-title">Production Variances</h3>
 
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6 col-6">
-                        <ProjectsStatusDonutChart></ProjectsStatusDonutChart>
+                        <ApexChart TItem="ProjectStatusData"
+                                   Title="">
+
+                            <ApexPointSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             Name="Score"
+                                             XValue="@(e => e.Name)"
+                                             YAggregate="@(e => e.Sum(e => e.Status))"
+                                             SeriesType="SeriesType.Bar"
+                                             Color="#003399"
+                                             DataPointMutator="PointMutator" />
+                        </ApexChart>
                     </div>
                     <div class="col-lg-6 col-6">
-                        <!-- small box -->
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>0</h3>
+                        <ApexChart TItem="ProjectStatusData"
+                                   Title=""
+                                   Options=options>
 
-                                <p>Urgent Project Issues<br /></p><br />
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-clock"></i>
-                            </div>
+                            <ApexRangeSeries TItem="ProjectStatusData"
+                                             Items="Data"
+                                             XValue="@(e => e.Name.ToString())"
+                                             YValue="@(e =>e.Status)" />
 
-                        </div>
+                        </ApexChart>
                     </div>
                 </div>
 
@@ -203,4 +204,61 @@
 </div>
 
 
- 
+@code {
+    private List<ProjectStatusData> Data { get; set; } = new();
+    private ApexChartOptions<ProjectStatusData> options { get; set; } = new();
+    protected override void OnInitialized()
+    {
+        Data.Add(new ProjectStatusData { Name = "Active", Status = 13 });
+        Data.Add(new ProjectStatusData { Name = "In Planning", Status = 40 });
+        Data.Add(new ProjectStatusData { Name = "Suspended", Status = 10 });
+
+        options.Legend = null;
+
+        options = new ApexChartOptions<ProjectStatusData>
+            {
+                PlotOptions = new PlotOptions
+                {
+                    Bar = new PlotOptionsBar
+                    {
+                        Horizontal = true
+                    }
+                }
+            };
+
+    }
+
+    public class ProjectStatusData
+    {
+        public string Name { get; set; }
+        public int Status { get; set; }
+    }
+    private void PointMutator(IDataPoint<ProjectStatusData> point)
+    {
+        var dataPoint = (DataPoint<ProjectStatusData>)point;
+        if (dataPoint.Y > 0)
+        {
+            dataPoint.FillColor = "#003399";
+        }
+        else
+        {
+            dataPoint.FillColor = "#e62e00";
+        }
+    }
+
+
+    private string GetPointColor(ProjectStatusData data)
+    {
+        switch (data.Name)
+        {
+            case "Active":
+                return "#367cd2";
+            case "In Planning":
+                return "#736eb9";
+            case "Suspended":
+                return "#01bdae";
+            default:
+                return "#80bb00";
+        }
+    }
+}

@@ -1,5 +1,6 @@
-﻿<ApexChart TItem="ProjectStatusData"
-            Title="Projects By Status">
+﻿@using ApexCharts
+<ApexChart TItem="ProjectStatusData"
+            Title="Projects By Status" Height="600">
 
      <ApexPointSeries TItem="ProjectStatusData"
                       Items="Data"
@@ -7,7 +8,8 @@
                       Name="Project Status"
                       XValue="@(e => e.Name)"
                       YAggregate="@(e => e.Sum(e => e.Status))"
-                      PointColor="e=> GetPointColor(e)" />
+                      PointColor="e=> GetPointColor(e)" 
+                      />
  </ApexChart>
 
  @code {
